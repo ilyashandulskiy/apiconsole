@@ -26,6 +26,8 @@
         "react/jsx-filename-extension" : "off",
         "import/extensions" : "off",
         "import/no-unresolved" : "off",
-        "react/require-default-props" : "off"
+        "react/require-default-props" : "off",
+        "@typescript-eslint/ban-ts-comment" : "off",
+        "default-param-last" : "off"
     }
 }
