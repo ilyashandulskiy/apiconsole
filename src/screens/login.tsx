@@ -1,18 +1,19 @@
 import React from "react";
+import Block from "../components/block";
+import LoginError from "../components/login-error";
 import TextInput from "../components/ui/text-input";
 
 function Login() {
     return ( 
         <div className="login">
-            <img className="logo logo_login" alt="logo" src="/images/logo_black.png" />
-            <div className="block">
+            <Block>
                 <p className="block__title">API консолька</p>
+                <LoginError />
                 <TextInput label="Логин" required />
                 <TextInput label="Сублогин" />
                 <TextInput label="Пароль" type="password" required />
                 <button type="button" className="btn">Войти</button>
-            </div>
-            <p className="github">@link-to-your-github</p>
+            </Block>
         </div>
      );
 }

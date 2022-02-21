@@ -384,3 +384,34 @@ p {
 .dragger__image {
   height: 18px;
 }
+
+.login-error {
+  display: flex;
+  flex-direction: row;
+  background: rgba(207, 44, 0, 0.1);
+  border-radius: 5px;
+  padding: 10px;
+  margin: 5px;
+}
+
+.login-error__image {
+  width: 24px;
+  height: 24px;
+}
+
+.login-error__content {
+  margin: 0px 10px;
+}
+
+.login-error__title {
+  font-size: 18px;
+  line-height: 25px;
+  color: #CF2C00;
+}
+
+.login-error__reason {
+  font-size: 12px;
+  line-height: 20px;
+  color: #CF2C00;
+  opacity: 0.5;
+}
