@@ -158,6 +158,8 @@ p {
 }
 
 .main-app {
+  display: flex;
+  flex-direction: column;
   width: 100%;
 }
 
@@ -315,4 +317,70 @@ p {
   background: linear-gradient(269.93deg, #F6F6F6 0.06%, rgba(246, 246, 246, 0) 99.93%);
 
   pointer-events: none
+}
+
+.footer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-self: flex-end;
+  justify-content: space-between;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.request {
+  display: flex;
+  flex: 1;
+  justify-self: stretch;
+  justify-content: stretch;
+}
+
+.format-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: none;
+  border: none;
+
+  cursor: pointer;
+}
+
+.format-button:hover {
+  opacity: 0.75;
+}
+
+.format-button__text {
+  font-size: 16px;
+  line-height: 20px;
+  color: #0D0D0D;
+  margin-right: 15px;
+}
+
+.format-button__image {
+  width: 24px;
+  margin: 0px 10px;
+}
+
+.area-container {
+  display: flex;
+  flex: 1;
+}
+
+.area {
+  height: 100%;
+  font-size: 14px;
+  line-height: 18px;
+  resize: none;
+}
+
+.dragger {
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+  cursor: ew-resize
+}
+
+.dragger__image {
+  height: 18px;
 }
