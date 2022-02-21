@@ -25,6 +25,7 @@
     "rules": {
         "react/jsx-filename-extension" : "off",
         "import/extensions" : "off",
-        "import/no-unresolved" : "off"
+        "import/no-unresolved" : "off",
+        "react/require-default-props" : "off"
     }
 }
