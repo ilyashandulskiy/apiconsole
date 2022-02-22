@@ -11,10 +11,7 @@ function Header() {
                 <p className="header__title">API-консолька</p>
             </div>
             <div className="header__right-side">
-                <Profile
-                    login="some@email.com"
-                    sublogin="sublogin"
-                />
+                <Profile />
                 <LogoutButton />
                 <FullscreenButton />
             </div>

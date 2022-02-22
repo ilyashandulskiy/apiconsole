@@ -1,16 +1,23 @@
 import React from "react";
+import useAppSelector from '../hooks/useAppSelector'
 
-interface Iprops {
-    login: string;
-    sublogin: string;
-}
+function Profile() {
+    
+    const userdata = useAppSelector(state => state.USERDATA)
 
-function Profile({login, sublogin} : Iprops) {
+    if (userdata?.sublogin && userdata?.account) {
+        if (userdata.account === userdata.sublogin) return (
+            <div className="profile">
+                <p className="profile__login">{userdata?.account}</p>
+            </div>
+        )
+    }
+
     return ( 
         <div className="profile">
-            <p className="profile__login">{login}</p>
+            <p className="profile__login">{userdata?.account}</p>
             <p className="profile__separator">:</p>
-            <p className="profile__sublogin">{sublogin}</p>
+            <p className="profile__sublogin">{userdata?.sublogin}</p>
         </div>
      );
 }

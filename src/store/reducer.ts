@@ -1,5 +1,5 @@
 import initState, { Istate } from './init-state';
-import { HISTORY_DROPDOWN, LOGIN } from './types';
+import { HISTORY_DROPDOWN, LOGIN, USERDATA } from './types';
 import { Idropdown } from '../types'
 import { saveToLocalStorage } from '../libs/localstore';
 
@@ -13,7 +13,15 @@ interface Iaction_LOGIN {
     payload: string | null
 }
 
-type Iaction = Iaction_HISTORY_DROPDOWN | Iaction_LOGIN;
+interface Iaction_USERDATA {
+    type: 'USERDATA',
+    payload: {
+        account: string,
+        sublogin: string,
+    } | null
+}
+
+type Iaction = Iaction_HISTORY_DROPDOWN | Iaction_LOGIN | Iaction_USERDATA;
 
 const reducer = (state: Istate = initState, action: Iaction): Istate => {
     
@@ -23,7 +31,10 @@ const reducer = (state: Istate = initState, action: Iaction): Istate => {
         
         case LOGIN:
             saveToLocalStorage('AUTH', action.payload)
-            return {...state, LOGIN : action.payload}
+            return { ...state, LOGIN: action.payload }
+        
+        case USERDATA:
+            return {...state, USERDATA : action.payload}
     
         default:
             return {...state}
