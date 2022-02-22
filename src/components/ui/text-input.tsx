@@ -6,10 +6,12 @@ interface Iprops {
     type?: 'text' | 'password';
     required: boolean,
     setValue: (value: string) => void;
-    isError: boolean
+    isError: boolean,
+    readonly?: boolean,
+    value: string
 }
 
-function TextInput({ setValue, label, placeholder, type = 'text', required, isError }: Iprops) {
+function TextInput({ setValue, label, placeholder, type = 'text', required, isError, readonly, value }: Iprops) {
 
 
     return ( 
@@ -29,6 +31,8 @@ function TextInput({ setValue, label, placeholder, type = 'text', required, isEr
                 onChange={(data: React.ChangeEvent<HTMLInputElement>) =>
                     setValue(data.currentTarget.value)}
                 type={type}
+                value={value}
+                readOnly={readonly}
                 placeholder={placeholder}
                 className={isError ? 'input input_error' : 'input'} />
         </div>

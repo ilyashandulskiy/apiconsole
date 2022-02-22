@@ -1,3 +1,5 @@
+import { IinputType } from "../types";
+
 export const HISTORY_DROPDOWN_OPTIONS = [
     {
         type: 'button',
@@ -24,7 +26,7 @@ export const HISTORY_DROPDOWN_OPTIONS = [
 ];
 
 interface I_LOGIN_FORM {
-    type: 'input' | 'submit' | 'password',
+    type: IinputType,
     label: string,
     required: boolean,
     id: string,
@@ -32,10 +34,10 @@ interface I_LOGIN_FORM {
 
 export const LOGIN_FORM : I_LOGIN_FORM[] = [
     {
-        type: 'input', id: "login", label: "Логин", required: true
+        type: 'text', id: "login", label: "Логин", required: true
     },
     {
-        type: 'input', id: "sublogin", label: "Сублогин", required: false
+        type: 'text', id: "sublogin", label: "Сублогин", required: false
     },
     {
         type: 'password', id: "password", label: "Пароль", required: true

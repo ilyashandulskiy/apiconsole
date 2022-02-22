@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from "react"; 
 import Button from "./button";
 import TextInput from "./text-input";
-
-interface Iitem {
-    type: 'input' | 'submit' | 'password',
-    label: string,
-    required: boolean,
-    id: string,
-}
-
-interface Iresult {
-    [key: string]: string
-}
+import validate from '../../libs/validate'
+import formInit from "../../libs/form-init";
+import { Iitem, Iresult, Iinput, IinputType } from '../../types'
+import validateText from "../../libs/validate-text";
 
 interface Iprops {
     data: Iitem[],
@@ -19,50 +12,24 @@ interface Iprops {
     isLoading: boolean
 }
 
-interface Iinput {
-    value: string,
-    error: boolean,
-    id: string,
-    required: boolean
-}
-
 
 function Form({ data, callback, isLoading }: Iprops) {
 
     const [formdata, setFormdata] = useState<Iinput[]>(Array(data.length).fill({}))
 
-    useEffect(() => {
-        const initFormdata = data.map((item: Iitem) =>
-            ({ value: '', id: item.id, required: item.required, error: false })
-        )
-        setFormdata(initFormdata)
-    }, [])
-    
+    useEffect(() => formInit(data, setFormdata), [])
 
-    const onInput = (index: number, value: string, id: string, required: boolean) => {
+    const onInput = (index: number, value: string, id: string, required: boolean, type: IinputType) => {
         const newFormdata = [...formdata]
-        newFormdata[index] = { value, id, required, error : false };
+
+        const newvalue = validateText(value, type)
+
+        newFormdata[index] = { value : newvalue, id, required, error : false };
         setFormdata(newFormdata)
     }
 
-    const validate = (array: Iinput[]) => {
-        let problems = 0;
-        
-        array.forEach((item : Iinput, index : number) => {
-            if (item.required && item.value.length === 0) {
-                problems += 1;
-                const newFormdata = [...formdata]
-                newFormdata[index].error = true;
-                setFormdata(newFormdata)
-            }
-        });
-
-        if (problems === 0) return true
-        return false
-    }
-
     const onSubmit = () => {
-        if (validate(formdata)) {
+        if (validate(formdata, setFormdata)) {
             const result : Iresult = {};
             formdata.forEach((item : Iinput) => {
                 if(item.id) result[item.id] = item.value;
@@ -73,22 +40,13 @@ function Form({ data, callback, isLoading }: Iprops) {
 
     const content = data.map((item, index) => {
 
-        if (item.type === 'input') return (
+        if (item.type === 'text' || item.type === 'password') return (
             <TextInput
                 isError={formdata[index].error}
+                value={formdata[index].value || ''}
                 key={item.id}
-                setValue={value => onInput(index, value, item.id, item.required)}
-                label={item.label}
-                required={item.required}
-            />
-        )
-
-        if (item.type === 'password') return (
-            <TextInput
-                isError={formdata[index].error}
-                type="password"
-                key={item.id}
-                setValue={value => onInput(index, value, item.id, item.required)}
+                type={item.type}
+                setValue={value => onInput(index, value, item.id, item.required, item.type)}
                 label={item.label}
                 required={item.required}
             />

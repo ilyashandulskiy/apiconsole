@@ -8,7 +8,7 @@ function Requestq() {
             <div className="dragger">
                 <img src="/images/drag-element.png" alt="dragger" className="dragger__image" />
             </div>
-            <AreaInput label="Ответ:" />
+            <AreaInput readonly label="Ответ:" />
         </div>
      );
 }

@@ -4,3 +4,23 @@ export interface Idropdown {
     right: number,
     bottom: number
 }
+
+export interface Iinput {
+    value: string,
+    error: boolean,
+    id: string,
+    required: boolean
+}
+
+export interface Iresult {
+    [key: string]: string
+}
+
+export interface Iitem {
+    type: 'text' | 'submit' | 'password',
+    label: string,
+    required: boolean,
+    id: string,
+}
+
+export type IinputType = 'text' | 'password' | 'submit'
