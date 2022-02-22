@@ -1,4 +1,5 @@
 import { Idropdown } from "../types";
+import { loadFromLocalStore } from "../libs/localstore";
 
 export interface Istate {
     HISTORY_DROPDOWN: null | Idropdown,
@@ -7,7 +8,7 @@ export interface Istate {
 
 const initState : Istate = {
     HISTORY_DROPDOWN: null,
-    LOGIN: null
+    LOGIN: loadFromLocalStore('AUTH')
 }
 
 export default initState

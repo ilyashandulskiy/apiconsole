@@ -1,6 +1,7 @@
 import initState, { Istate } from './init-state';
 import { HISTORY_DROPDOWN, LOGIN } from './types';
 import { Idropdown } from '../types'
+import { saveToLocalStorage } from '../libs/localstore';
 
 interface Iaction_HISTORY_DROPDOWN {
     type: 'HISTORY_DROPDOWN',
@@ -21,6 +22,7 @@ const reducer = (state: Istate = initState, action: Iaction): Istate => {
             return { ...state, HISTORY_DROPDOWN: action.payload }
         
         case LOGIN:
+            saveToLocalStorage('AUTH', action.payload)
             return {...state, LOGIN : action.payload}
     
         default:
