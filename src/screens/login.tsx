@@ -3,38 +3,43 @@ import { useDispatch } from 'react-redux';
 import Block from "../components/block";
 import LoginError from "../components/login-error";
 import Form from "../components/ui/form";
+import { sendsayLogin } from "../api/sendsay";
+import { LOGIN } from "../store/types";
+import { LOGIN_FORM } from '../libs/constants'
+
+interface IsubmitData {
+    login: string,
+    password: string,
+    sublogin: string,
+}
 
 function Login() {
     const [loginError, setLoginError] = useState<null | string>(null)
     const [loading, setLoading] = useState<boolean>(false);
     const dispatch = useDispatch()
 
-    const onSubmit = (data : any) => {
-        console.log(data)
-        setLoading(true)
-        setLoginError(null)
+    const loginErrorPopup = loginError ? <LoginError error={loginError} /> : null;
 
-        setTimeout(() => {
-            setLoading(false)
-            setLoginError('dude error')
-            dispatch({type: 'LOGIN', payload: 'ok'})
-        },2000)
+    const onSubmit = (data : IsubmitData) => {
+        setLoading(true)
+        sendsayLogin(data)
+            .then((token: string) => dispatch({ type: LOGIN, payload: token }))
+            .catch((error: string) => {
+                setLoading(false)
+                setLoginError(error)
+            })
     }
 
     return ( 
         <div className="login">
             <Block>
                 <p className="block__title">API консолька</p>
-                {loginError ? <LoginError error={loginError} /> : null}
+                {loginErrorPopup}
                 <Form
-                    callback={onSubmit}
-                    isLoading = {loading}
-                    data={[
-                        { type: 'input', id: "login", label: "Логин", required: true},
-                        { type: 'input', id: "sublogin", label: "Сублогин", required: false },
-                        { type: 'password', id: "password", label: "Пароль", required: true },
-                        { type: 'submit', id: "confirm", label: "Войти", required: false }
-                    ]}
+                    callback={({ login, sublogin, password }) =>
+                        onSubmit({ login, sublogin, password })}
+                    isLoading={loading}
+                    data={LOGIN_FORM}
                 />
             </Block>
         </div>

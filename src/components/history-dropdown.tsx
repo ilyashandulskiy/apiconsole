@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from 'react-redux'
 import useAppSelector from "../hooks/useAppSelector";
 import DropdownItem from "./ui/dropdown-item";
-import constants from '../libs/constants'
+import { HISTORY_DROPDOWN_OPTIONS } from "../libs/constants";
 import { HISTORY_DROPDOWN } from "../store/types";
 
 function HistoryDropDown() {
@@ -12,7 +12,7 @@ function HistoryDropDown() {
 
     if (!dropdown) return null
     
-    const list = constants.HISTORY_DROPDOWN_OPTIONS.map(option => {
+    const list = HISTORY_DROPDOWN_OPTIONS.map(option => {
 
         if (option.type === 'line') return (
             <div key={option.id} className="history-dropdown__line" />

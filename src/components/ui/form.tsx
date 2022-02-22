@@ -9,9 +9,13 @@ interface Iitem {
     id: string,
 }
 
+interface Iresult {
+    [key: string]: string
+}
+
 interface Iprops {
     data: Iitem[],
-    callback: (data: unknown) => void,
+    callback: (data: Iresult) => void,
     isLoading: boolean
 }
 
@@ -22,9 +26,6 @@ interface Iinput {
     required: boolean
 }
 
-interface Iresult {
-    [key: string]: string
-}
 
 function Form({ data, callback, isLoading }: Iprops) {
 
