@@ -1,5 +1,5 @@
 import initState, { Istate } from './init-state';
-import { HISTORY_DROPDOWN } from './types';
+import { HISTORY_DROPDOWN, LOGIN } from './types';
 import { Idropdown } from '../types'
 
 interface Iaction_HISTORY_DROPDOWN {
@@ -7,13 +7,21 @@ interface Iaction_HISTORY_DROPDOWN {
     payload: Idropdown | null
 }
 
-type Iaction = Iaction_HISTORY_DROPDOWN;
+interface Iaction_LOGIN {
+    type: 'LOGIN',
+    payload: string | null
+}
+
+type Iaction = Iaction_HISTORY_DROPDOWN | Iaction_LOGIN;
 
 const reducer = (state: Istate = initState, action: Iaction): Istate => {
     
     switch (action.type) {
         case HISTORY_DROPDOWN:
-            return {...state, HISTORY_DROPDOWN : action.payload}
+            return { ...state, HISTORY_DROPDOWN: action.payload }
+        
+        case LOGIN:
+            return {...state, LOGIN : action.payload}
     
         default:
             return {...state}

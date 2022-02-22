@@ -36,6 +36,11 @@ button {
   line-height: 30px;
 }
 
+.input_error {
+  border: 1px solid #CF2C00;
+  box-shadow: 0px 0px 5px rgba(207, 44, 0, 0.5);
+}
+
 .input:hover {
   border: 1px solid rgba(0, 0, 0, 0.4);
 }
@@ -57,6 +62,10 @@ button {
   color: #0D0D0D;
 }
 
+.input-container__label_error {
+  color: #CF2C00;
+}
+
 .input-container__optional {
   font-size: 12px;
   line-height: 20px;
@@ -74,13 +83,15 @@ button {
 .btn {
   background: linear-gradient(180deg, #45A6FF 0%, #0055FB 100%), #C4C4C4;
   border-radius: 5px;
-  padding: 5px 0px;
   margin: 10px;
   width: 110px;
-
+  height: 40px;
   color: #fff;
   font-size: 16px;
   line-height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   cursor: pointer;
 }
@@ -456,4 +467,15 @@ button {
   background-color: rgba(0, 0, 0, 0.2);
   width: 100%;
   height: 1px
+}
+
+.spinner_button {
+  width: 24px;
+
+  animation: spin 0.5s steps(8,end) infinite;
+}
+
+@keyframes spin {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
 }

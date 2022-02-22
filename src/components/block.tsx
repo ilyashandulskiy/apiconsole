@@ -1,7 +1,7 @@
 import React from "react";
 
 interface Iprops {
-    children: React.ReactElement[]
+    children: (React.ReactElement | null)[]
 }
 
 function Block({ children } : Iprops) {
