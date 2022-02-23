@@ -7,13 +7,23 @@ export interface Istate {
     USERDATA: {
         account: string,
         sublogin: string,
-    } | null
+    } | null,
+    REQUEST_TEXT: string,
+    REQUEST_STATUS: boolean,
+    RESPONSE_TEXT: string,
+    RESPONSE_STATUS: boolean,
+    REQUEST_PENDING: boolean
 }
 
 const initState : Istate = {
     HISTORY_DROPDOWN: null,
     LOGIN: loadFromLocalStore('AUTH'),
-    USERDATA: null
+    USERDATA: null,
+    REQUEST_STATUS: false,
+    REQUEST_TEXT: '',
+    RESPONSE_TEXT: '',
+    RESPONSE_STATUS: false,
+    REQUEST_PENDING: false
 }
 
 export default initState

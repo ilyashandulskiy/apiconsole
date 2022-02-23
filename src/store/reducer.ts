@@ -1,27 +1,7 @@
 import initState, { Istate } from 'store/init-state';
-import { HISTORY_DROPDOWN, LOGIN, USERDATA } from 'store/types';
-import { Idropdown } from 'types'
+import { HISTORY_DROPDOWN, LOGIN, USERDATA, REQUEST_TEXT, RESPONSE_TEXT, REQUEST_STATUS, RESPONSE_STATUS, REQUEST_PENDING } from 'store/types';
+import Iaction from 'store/interfaces';
 import { saveToLocalStorage } from 'libs/localstore';
-
-interface Iaction_HISTORY_DROPDOWN {
-    type: 'HISTORY_DROPDOWN',
-    payload: Idropdown | null
-}
-
-interface Iaction_LOGIN {
-    type: 'LOGIN',
-    payload: string | null
-}
-
-interface Iaction_USERDATA {
-    type: 'USERDATA',
-    payload: {
-        account: string,
-        sublogin: string,
-    } | null
-}
-
-type Iaction = Iaction_HISTORY_DROPDOWN | Iaction_LOGIN | Iaction_USERDATA;
 
 const reducer = (state: Istate = initState, action: Iaction): Istate => {
     
@@ -34,7 +14,22 @@ const reducer = (state: Istate = initState, action: Iaction): Istate => {
             return { ...state, LOGIN: action.payload }
         
         case USERDATA:
-            return {...state, USERDATA : action.payload}
+            return { ...state, USERDATA: action.payload }
+        
+        case REQUEST_PENDING:
+            return { ...state, REQUEST_PENDING: action.payload }
+        
+        case REQUEST_STATUS:
+            return { ...state, REQUEST_STATUS: action.payload }
+    
+        case RESPONSE_STATUS:
+            return { ...state, RESPONSE_STATUS: action.payload }
+        
+        case REQUEST_TEXT:
+            return { ...state, REQUEST_TEXT: action.payload, REQUEST_STATUS: false }
+        
+        case RESPONSE_TEXT:
+            return { ...state, RESPONSE_TEXT: action.payload }
     
         default:
             return {...state}

@@ -1,4 +1,8 @@
-/* eslint-disable import/prefer-default-export */
 export const HISTORY_DROPDOWN = 'HISTORY_DROPDOWN';
 export const LOGIN = 'LOGIN';
 export const USERDATA = 'USERDATA';
+export const REQUEST_TEXT = 'REQUEST_TEXT';
+export const REQUEST_STATUS = 'REQUEST_STATUS';
+export const RESPONSE_TEXT = 'RESPONSE_TEXT';
+export const RESPONSE_STATUS = 'RESPONSE_STATUS';
+export const REQUEST_PENDING = 'REQUEST_PENDING'
