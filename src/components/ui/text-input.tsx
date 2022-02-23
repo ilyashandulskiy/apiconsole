@@ -4,19 +4,37 @@ interface Iprops {
     label?: string;
     placeholder?: string;
     type?: 'text' | 'password';
-    required? : boolean
+    required: boolean,
+    setValue: (value: string) => void;
+    isError: boolean,
+    readonly?: boolean,
+    value: string
 }
 
-function TextInput({ label, placeholder, type = 'text', required }: Iprops) {
+function TextInput({ setValue, label, placeholder, type = 'text', required, isError, readonly, value }: Iprops) {
 
 
     return ( 
         <div className="input-container">
             <div className="input-container__header">
-                {label ? <p className="input-container__label">{label}</p> : null}
+                {label ?
+                    <p className={isError ?
+                            'input-container__label input-container__label_error'
+                            :
+                            'input-container__label'
+                    }>
+                        {label}
+                    </p> : null}
                 {required ? null : <p className="input-container__optional">Опционально</p>}
             </div>
-            <input type={type} placeholder={placeholder} className="input" />
+            <input
+                onChange={(data: React.ChangeEvent<HTMLInputElement>) =>
+                    setValue(data.currentTarget.value)}
+                type={type}
+                value={value}
+                readOnly={readonly}
+                placeholder={placeholder}
+                className={isError ? 'input input_error' : 'input'} />
         </div>
      );
 }

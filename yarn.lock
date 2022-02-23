@@ -7686,7 +7686,7 @@ send@0.17.2:
 
 sendsay-api@^2.4.0:
   version "2.4.0"
-  resolved "https://registry.npmjs.org/sendsay-api/-/sendsay-api-2.4.0.tgz"
+  resolved "https://registry.yarnpkg.com/sendsay-api/-/sendsay-api-2.4.0.tgz#7dbadfeab8b3878c8a6dd0df08a2c6a11bed7497"
   integrity sha512-4xZV9M7MVM/jllWA4IdU+N0+LnkcQqBPS3GO/kf53c2gSsSq/Bv14KkZQ2F02ORQyo3/3W/FrpQEsCPxDdfLoQ==
 
 serialize-javascript@^4.0.0:
