@@ -1,10 +1,12 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
-import Login from "../screens/login";
-import MainApp from "../screens/main-app";
-import Error404 from "../screens/errors/404";
-import useAppSelector from "../hooks/useAppSelector";
+import Login from "screens/login";
+import MainApp from "screens/main-app";
+import Error404 from "screens/errors/404";
+import useAppSelector from "hooks/useAppSelector";
+
+
 
 function Navigation() {
 

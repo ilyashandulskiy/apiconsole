@@ -1,9 +1,9 @@
 import React from "react";  
 import { useDispatch } from 'react-redux'
-import useAppSelector from "../hooks/useAppSelector";
-import DropdownItem from "./ui/dropdown-item";
-import { HISTORY_DROPDOWN_OPTIONS } from "../libs/constants";
-import { HISTORY_DROPDOWN } from "../store/types";
+import useAppSelector from "hooks/useAppSelector";
+import DropdownItem from "components/ui/dropdown-item";
+import { HISTORY_DROPDOWN_OPTIONS } from "libs/constants";
+import { HISTORY_DROPDOWN } from "store/types";
 
 function HistoryDropDown() {
 

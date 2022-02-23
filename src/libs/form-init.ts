@@ -1,5 +1,5 @@
 
-import { Iitem, Iinput } from '../types'
+import { Iitem, Iinput } from 'types'
 
 interface IformInit {
     (

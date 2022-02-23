@@ -1,5 +1,5 @@
 import React from "react";
-import testArray from "../test/testArray";
+import testArray from "test/testArray";
 
 
 function History() {

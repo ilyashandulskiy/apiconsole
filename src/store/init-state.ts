@@ -1,5 +1,5 @@
-import { Idropdown } from "../types";
-import { loadFromLocalStore } from "../libs/localstore";
+import { Idropdown } from "types";
+import { loadFromLocalStore } from "libs/localstore";
 
 export interface Istate {
     HISTORY_DROPDOWN: null | Idropdown,

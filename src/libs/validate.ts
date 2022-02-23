@@ -1,4 +1,4 @@
-import { Iinput } from '../types'
+import { Iinput } from 'types'
 
 interface Ivalidate {
     (

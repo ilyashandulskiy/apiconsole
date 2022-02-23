@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { useDispatch } from 'react-redux';
-import { Idropdown } from '../types';
-import { HISTORY_DROPDOWN } from '../store/types'
+import { Idropdown } from 'types';
+import { HISTORY_DROPDOWN } from 'store/types'
 
 
 interface Iprops {

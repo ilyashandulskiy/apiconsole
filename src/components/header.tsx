@@ -1,7 +1,7 @@
 import React from "react";
-import FullscreenButton from "./fullscreen-button";
-import LogoutButton from "./logout-button";
-import Profile from "./profile";
+import FullscreenButton from "components/fullscreen-button";
+import LogoutButton from "components/logout-button";
+import Profile from "components/profile";
 
 function Header() {
     return ( 

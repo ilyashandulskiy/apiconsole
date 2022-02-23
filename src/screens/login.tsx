@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
-import Block from "../components/block";
-import LoginError from "../components/login-error";
-import Form from "../components/ui/form";
-import { sendsayLogin } from "../api/sendsay";
-import { LOGIN } from "../store/types";
-import { LOGIN_FORM } from '../libs/constants'
+import Block from "components/block";
+import LoginError from "components/login-error";
+import Form from "components/ui/form";
+import { sendsayLogin } from "api/sendsay";
+import { LOGIN } from "store/types";
+import { LOGIN_FORM } from 'libs/constants'
 
 interface IsubmitData {
     login: string,

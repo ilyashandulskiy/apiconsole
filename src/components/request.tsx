@@ -1,5 +1,5 @@
 import React from "react";
-import AreaInput from './ui/area-input'
+import AreaInput from 'components/ui/area-input'
 
 function Requestq() {
     return ( 

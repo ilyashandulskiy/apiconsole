@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react"; 
-import Button from "./button";
-import TextInput from "./text-input";
-import validate from '../../libs/validate'
-import formInit from "../../libs/form-init";
-import { Iitem, Iresult, Iinput, IinputType } from '../../types'
-import validateText from "../../libs/validate-text";
+import Button from "components/ui/button";
+import TextInput from "components/ui/text-input";
+import validate from 'libs/validate'
+import formInit from "libs/form-init";
+import { Iitem, Iresult, Iinput, IinputType } from 'types'
+import validateText from "libs/validate-text";
 
 interface Iprops {
     data: Iitem[],

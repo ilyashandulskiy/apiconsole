@@ -1,4 +1,4 @@
-import { IinputType } from "../types";
+import { IinputType } from "types";
 
 const validateText = (text: string, type: IinputType) : string => {
 

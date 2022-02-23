@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from 'react-redux'
-import { LOGIN } from "../store/types";
+import { LOGIN } from "store/types";
 
 function LogoutButton() {
     const dispatch = useDispatch()

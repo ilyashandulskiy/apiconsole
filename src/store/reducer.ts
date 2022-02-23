@@ -1,7 +1,7 @@
-import initState, { Istate } from './init-state';
-import { HISTORY_DROPDOWN, LOGIN, USERDATA } from './types';
-import { Idropdown } from '../types'
-import { saveToLocalStorage } from '../libs/localstore';
+import initState, { Istate } from 'store/init-state';
+import { HISTORY_DROPDOWN, LOGIN, USERDATA } from 'store/types';
+import { Idropdown } from 'types'
+import { saveToLocalStorage } from 'libs/localstore';
 
 interface Iaction_HISTORY_DROPDOWN {
     type: 'HISTORY_DROPDOWN',

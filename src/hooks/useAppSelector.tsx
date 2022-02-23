@@ -1,5 +1,5 @@
 import { TypedUseSelectorHook, useSelector } from "react-redux";
-import { Istate } from "../store/init-state";
+import { Istate } from "store/init-state";
 
 const useAppSelector: TypedUseSelectorHook<Istate> = useSelector
 
