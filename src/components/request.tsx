@@ -3,6 +3,7 @@ import AreaInput from 'components/ui/area-input'
 import useAppSelector from "hooks/useAppSelector";
 import { REQUEST_TEXT } from "store/types";
 import { useDispatch } from "react-redux";
+import Resizeable from "components/resizeable";
 
 function Requestq() {
 
@@ -15,22 +16,26 @@ function Requestq() {
 
     return ( 
         <div className="request">
-            <AreaInput
-                value={requestText}
-                label="Запрос:"
-                isError={requestStatus}
-                setValue={(val: string) => dispatch({type: REQUEST_TEXT, payload: val})}
+            <Resizeable
+                firstField={
+                    <AreaInput
+                        value={requestText}
+                        label="Запрос:"
+                        isError={requestStatus}
+                        setValue={(val: string) => dispatch({type: REQUEST_TEXT, payload: val})}
+                    />
+                }
+                secondField={
+                    <AreaInput
+                        readonly
+                        label="Ответ:"
+                        isError={responseStatus}
+                        setValue={() => null}
+                        value={responseText}
+                    />
+                }
             />
-            <div className="dragger">
-                <img src="/images/drag-element.png" alt="dragger" className="dragger__image" />
-            </div>
-            <AreaInput
-                readonly
-                label="Ответ:"
-                isError={responseStatus}
-                setValue={() => null}
-                value={responseText}
-            />
+            
         </div>
      );
 }

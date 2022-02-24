@@ -7,6 +7,8 @@ html, body, #root {
   align-items: stretch;
   width: 100%;
   height: 100%;
+  min-width: 400px;
+  min-height: 400px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
@@ -347,6 +349,7 @@ button {
 
 .request {
   display: flex;
+  flex-direction: row;
   flex: 1;
   justify-self: stretch;
   justify-content: stretch;
@@ -382,22 +385,33 @@ button {
 }
 
 .area {
+  display: flex;
+  flex: 1;
   height: 100%;
   font-size: 14px;
   line-height: 18px;
   resize: none;
+  overflow-y: auto;
+  overflow-x: auto;
 }
 
 .dragger {
   height: 100%;
   display: flex;
   align-items: center;
+  padding: 10px;
+  z-index: 10;
 
+  cursor: pointer;
+}
+
+.dragger:active {
   cursor: ew-resize
 }
 
 .dragger__image {
   height: 18px;
+  width: 4px;
 }
 
 .login-error {
@@ -485,4 +499,29 @@ button {
 @keyframes spin {
   from {transform:rotate(0deg);}
   to {transform:rotate(360deg);}
+}
+
+.resizeable-right {
+  display: flex;
+  flex: 1;
+  background-color: 'red';
+  min-width: 250px;
+  margin-left: -10px;
+}
+
+.resizeable-left {
+  display: flex;
+  flex: 1;
+  margin-right: -10px;
+}
+
+.resizeable {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
+.react-resizable {
+  display: flex;
+  flex-direction: row;
 }
