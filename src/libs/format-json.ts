@@ -1,6 +1,5 @@
 
 const formatJSON = (input: string, checkAction: boolean) => {
-
     try {
         const object = JSON.parse(input)
         if (checkAction && !object.action) return null;
@@ -8,7 +7,6 @@ const formatJSON = (input: string, checkAction: boolean) => {
     } catch (error) {
         return null
     }
-
 }
 
 export default formatJSON

@@ -2,9 +2,10 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import useAppSelector from "hooks/useAppSelector";
 import { sendsayRequest } from "api/sendsay";
-import { RESPONSE_TEXT, RESPONSE_STATUS, REQUEST_STATUS, REQUEST_PENDING } from "store/types";
+import { REQUEST_STATUS, REQUEST_PENDING } from "store/types";
 import formatJSON from "libs/format-json";
-import Button from "./ui/button";
+import afterResponse from "libs/after-response";
+import Button from "components/ui/button";
 
 function SendButton() {
 
@@ -19,16 +20,8 @@ function SendButton() {
         if (formatJSON(requestText, true) !== null) {
             dispatch({type: REQUEST_PENDING, payload: true})
             sendsayRequest(token, JSON.parse(requestText))
-                .then((result: string) => {
-                    dispatch({ type: RESPONSE_TEXT, payload: formatJSON(JSON.stringify(result), false) })
-                    dispatch({ type: RESPONSE_STATUS, payload: false })
-                    dispatch({type: REQUEST_PENDING, payload: false})
-                })
-                .catch((error: string) => {
-                    dispatch({ type: RESPONSE_TEXT, payload: formatJSON(JSON.stringify(error), false) })
-                    dispatch({ type: RESPONSE_STATUS, payload: true })
-                    dispatch({type: REQUEST_PENDING, payload: false})
-                })
+                .then((result: string) => afterResponse(true, result, requestText, dispatch))
+                .catch((error: string) => afterResponse(false, error, requestText, dispatch))
         } else {
             dispatch({ type: REQUEST_STATUS, payload: true })
         }

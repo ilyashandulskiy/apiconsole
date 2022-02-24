@@ -1,5 +1,5 @@
-import { Idropdown } from "types";
-import { loadFromLocalStore } from "libs/localstore";
+import { Idropdown, IhistoryItem } from "types";
+import { loadArrayFromLocalStore, loadFromLocalStore } from "libs/localstore";
 
 export interface Istate {
     HISTORY_DROPDOWN: null | Idropdown,
@@ -12,7 +12,9 @@ export interface Istate {
     REQUEST_STATUS: boolean,
     RESPONSE_TEXT: string,
     RESPONSE_STATUS: boolean,
-    REQUEST_PENDING: boolean
+    REQUEST_PENDING: boolean,
+    HISTORY: IhistoryItem[],
+    SELECTED_ITEM: number,
 }
 
 const initState : Istate = {
@@ -23,7 +25,9 @@ const initState : Istate = {
     REQUEST_TEXT: '',
     RESPONSE_TEXT: '',
     RESPONSE_STATUS: false,
-    REQUEST_PENDING: false
+    REQUEST_PENDING: false,
+    HISTORY: loadArrayFromLocalStore('HISTORY'),
+    SELECTED_ITEM: 0,
 }
 
 export default initState

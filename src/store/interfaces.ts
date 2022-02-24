@@ -1,16 +1,16 @@
-import { Idropdown } from "types";
+import { Idropdown, IhistoryItem } from "types";
 
-interface Iaction_HISTORY_DROPDOWN {
+interface HISTORY_DROPDOWN {
     type: 'HISTORY_DROPDOWN',
     payload: Idropdown | null
 }
 
-interface Iaction_LOGIN {
+interface LOGIN {
     type: 'LOGIN',
     payload: string | null
 }
 
-interface Iaction_USERDATA {
+interface USERDATA {
     type: 'USERDATA',
     payload: {
         account: string,
@@ -18,36 +18,54 @@ interface Iaction_USERDATA {
     } | null
 }
 
-interface Iaction_RESPONSE_TEXT {
+interface RESPONSE_TEXT {
     type: 'RESPONSE_TEXT',
     payload: string
 }
 
-
-interface Iaction_REQUEST_TEXT {
+interface REQUEST_TEXT {
     type: 'REQUEST_TEXT',
     payload: string
 }
 
-interface Iaction_REQUEST_STATUS {
+interface REQUEST_STATUS {
     type: 'REQUEST_STATUS',
     payload: boolean
 }
 
-interface Iaction_RESPONSE_STATUS {
+interface RESPONSE_STATUS {
     type: 'RESPONSE_STATUS',
     payload: boolean
 }
 
-interface Iaction_REQUEST_PENDING {
+interface REQUEST_PENDING {
     type: 'REQUEST_PENDING',
     payload: boolean
 }
 
+interface HISTORY {
+    type: 'HISTORY',
+    payload: IhistoryItem
+}
 
-type Iaction = Iaction_HISTORY_DROPDOWN | Iaction_LOGIN
-    | Iaction_USERDATA | Iaction_RESPONSE_TEXT
-    | Iaction_REQUEST_TEXT | Iaction_REQUEST_STATUS
-    | Iaction_RESPONSE_STATUS | Iaction_REQUEST_PENDING;
+interface CLEAR_HISTORY {
+    type: 'CLEAR_HISTORY'
+}
+
+interface REMOVE_HISTORY_ITEM {
+    type: 'REMOVE_HISTORY_ITEM'
+}
+
+interface SELECTED_ITEM {
+    type: 'SELECTED_ITEM',
+    payload: number
+}
+
+type Iaction = HISTORY_DROPDOWN | LOGIN
+    | USERDATA | RESPONSE_TEXT
+    | REQUEST_TEXT | REQUEST_STATUS
+    | RESPONSE_STATUS | REQUEST_PENDING
+    | HISTORY | REMOVE_HISTORY_ITEM
+    | SELECTED_ITEM | CLEAR_HISTORY;
 
 export default Iaction

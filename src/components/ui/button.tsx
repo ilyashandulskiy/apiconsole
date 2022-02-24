@@ -14,7 +14,7 @@ function Button({ loading, onClick, text }: Iprops) {
         <button
             type="button"
             className="btn"
-            onClick={onClick}
+            onClick={loading ? () => null : onClick}
         >
             {loading ? spinner : text}
         </button>

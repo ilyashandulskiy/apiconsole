@@ -470,6 +470,12 @@ button {
   margin: 5px 0px;
 }
 
+.history-item__menu-button {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+
 .spinner_button {
   width: 24px;
 

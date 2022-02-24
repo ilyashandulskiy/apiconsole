@@ -24,3 +24,13 @@ export interface Iitem {
 }
 
 export type IinputType = 'text' | 'password' | 'submit'
+
+export type IrequestOptions = 'execute' | 'copy' | 'remove' | 'preview';
+
+export interface IhistoryItem {
+    title: string,
+    status: boolean,
+    request: string,
+    response: string
+    id: number
+}

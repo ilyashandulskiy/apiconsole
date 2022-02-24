@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import useAppSelector from "hooks/useAppSelector";
 import DropdownItem from "components/ui/dropdown-item";
 import { HISTORY_DROPDOWN_OPTIONS } from "libs/constants";
-import { HISTORY_DROPDOWN } from "store/types";
+import { HISTORY_DROPDOWN, REMOVE_HISTORY_ITEM } from "store/types";
 
 function HistoryDropDown() {
 
@@ -11,6 +11,25 @@ function HistoryDropDown() {
     const dropdown = useAppSelector(state => state.HISTORY_DROPDOWN)
 
     if (!dropdown) return null
+
+    const onSelect = (id: number) => {
+        dispatch({type: HISTORY_DROPDOWN, payload: false})
+        
+        switch (id) {
+            case 0:
+                // execute
+                break;
+            case 1:
+                // copy
+                break;
+            case 3:
+                dispatch({type: REMOVE_HISTORY_ITEM})
+                break;
+            default:
+                break;
+        }
+        
+    }
     
     const list = HISTORY_DROPDOWN_OPTIONS.map(option => {
 
@@ -18,12 +37,16 @@ function HistoryDropDown() {
             <div key={option.id} className="history-dropdown__line" />
         )
 
-        return (option.text ?
+        if (!option.text) return null
+
+        return (
             <DropdownItem
                 key={option.id}
+                onSelect={() => onSelect(option.id)}
                 dangerous={option.dangerous}
                 title={option.text}
-            /> : null)
+            />
+        )
     })
 
     return ( 
