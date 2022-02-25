@@ -34,3 +34,8 @@ export interface IhistoryItem {
     response: string
     id: number
 }
+
+export interface Idimension {
+    width: number,
+    height: number
+}

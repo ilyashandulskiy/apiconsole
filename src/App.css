@@ -520,7 +520,6 @@ button {
   display: flex;
   flex: 1;
   background-color: 'red';
-  min-width: 250px;
   margin-left: -10px;
 }
 

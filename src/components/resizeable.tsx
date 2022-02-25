@@ -2,6 +2,9 @@ import { loadFromLocalStore, saveToLocalStorage } from "libs/localstore";
 import React, { useEffect, useRef, useState } from "react";
 import { ResizableBox } from 'react-resizable';
 import ResizeHandler from "components/resize-handler";
+import { initDimensions } from 'libs/dimensions'
+import { Idimension } from 'types'
+
 
 interface Iprops {
     firstField: React.ReactElement,
@@ -10,27 +13,31 @@ interface Iprops {
 
 function Resizeable({ firstField, secondField }: Iprops) {
 
-    const ref = useRef<HTMLDivElement>(null)
-    const [componentHeight, setComponentHeight] = useState<number>(0)
-
-    const { innerWidth, innerHeight } = window;
+    const [dimension, setDimension] = useState<Idimension>({width: 0, height: 0})
 
     useEffect(() => {
-        setComponentHeight(ref.current?.clientHeight || 0)
-        window.addEventListener('resize', () => setComponentHeight(ref.current?.clientHeight || 0));
-      return window.removeEventListener('resize', () => setComponentHeight(ref.current?.clientHeight || 0));
+        initDimensions(setDimension)
     }, [])
+    
+
+    const ref = useRef<HTMLDivElement>(null)
 
     const saveWidth = (width: number) => {
-        saveToLocalStorage('SCALE', (width/innerWidth).toString())
+        const k = width / dimension.width;
+        if (k > 0 && k < 1) {
+            saveToLocalStorage('SCALE', k.toString())
+        } else {
+            saveToLocalStorage('SCALE', '0.5')
+        }
+        
     }
 
     const initWidth = () => {
         const lastScale = loadFromLocalStore('SCALE')
-        if (!lastScale) return innerWidth / 2
+        if (!lastScale) return dimension.width / 2
 
-        let factWidth = innerWidth * (+lastScale);
-        if (factWidth > innerWidth - 250) factWidth = innerWidth - 250
+        let factWidth = dimension.width * (+lastScale);
+        if (factWidth > dimension.width - 250) factWidth = dimension.width - 250
         if (factWidth < 250) factWidth = 250
 
         return factWidth
@@ -40,10 +47,10 @@ function Resizeable({ firstField, secondField }: Iprops) {
         <div className="resizeable" ref={ref}>
             <ResizableBox
                 width={initWidth()}
-                height={componentHeight}
+                height={dimension.height - 167}
                 axis="x"
                 minConstraints={[250, 0]}
-                maxConstraints={[innerWidth-250, innerHeight]}
+                maxConstraints={[dimension.width-250, dimension.width]}
                 handle={ResizeHandler}
                 onResizeStop={
                     (_event, data) => saveWidth(data.size.width)

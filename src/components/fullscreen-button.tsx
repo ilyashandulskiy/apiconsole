@@ -1,17 +1,20 @@
 /* eslint-disable no-restricted-globals */
-import React, { useState } from "react";
+import { initFullscreen } from "libs/dimensions";
+import React, { useEffect, useState } from "react";
 
 function FullscreenButton() {
 
     const [isFullscreen, setIsFullscreen] = useState<boolean>(false)
 
+    useEffect(() => {
+        initFullscreen(setIsFullscreen)
+    }, [])
+
     const onFullscreen = () => {
         if (isFullscreen) {
             document.exitFullscreen()
-            setIsFullscreen(false)
         } else {
             document.body.requestFullscreen()
-            setIsFullscreen(true)
         }
         
     }
