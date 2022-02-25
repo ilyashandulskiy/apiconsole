@@ -1,11 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import useAppSelector from "hooks/useAppSelector";
-import { sendsayRequest } from "api/sendsay";
-import { REQUEST_STATUS, REQUEST_PENDING } from "store/types";
-import formatJSON from "libs/format-json";
-import afterResponse from "libs/after-response";
 import Button from "components/ui/button";
+import sendRequest from "libs/send-request";
 
 function SendButton() {
 
@@ -15,17 +12,7 @@ function SendButton() {
 
     const dispatch = useDispatch()
 
-    const onSend = () => {
-
-        if (formatJSON(requestText, true) !== null) {
-            dispatch({type: REQUEST_PENDING, payload: true})
-            sendsayRequest(token, JSON.parse(requestText))
-                .then((result: string) => afterResponse(true, result, requestText, dispatch))
-                .catch((error: string) => afterResponse(false, error, requestText, dispatch))
-        } else {
-            dispatch({ type: REQUEST_STATUS, payload: true })
-        }
-    }
+    const onSend = () => sendRequest(requestText, token, dispatch)
 
     return ( 
         <Button

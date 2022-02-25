@@ -3,7 +3,7 @@ import {
     HISTORY_DROPDOWN, LOGIN, USERDATA, REQUEST_TEXT,
     RESPONSE_TEXT, REQUEST_STATUS, RESPONSE_STATUS,
     REQUEST_PENDING, HISTORY, REMOVE_HISTORY_ITEM,
-    SELECTED_ITEM, CLEAR_HISTORY
+    SELECTED_ITEM, CLEAR_HISTORY, LAST_RESPONSE, HISTORY_COPY_ALERT
 } from 'store/types';
 import Iaction from 'store/interfaces';
 import { saveToLocalStorage } from 'libs/localstore';
@@ -22,6 +22,9 @@ const reducer = (state: Istate = initState, action: Iaction): Istate => {
         
         case USERDATA:
             return { ...state, USERDATA: action.payload }
+        
+        case HISTORY_COPY_ALERT:
+            return { ...state, HISTORY_COPY_ALERT: action.payload } 
     
         case HISTORY: {
             const newHistory = uniqueHistory(state.HISTORY, action.payload)
@@ -32,6 +35,9 @@ const reducer = (state: Istate = initState, action: Iaction): Istate => {
         case SELECTED_ITEM: 
             return { ...state, SELECTED_ITEM: action.payload } 
         
+        case LAST_RESPONSE: 
+            return { ...state, LAST_RESPONSE: action.payload } 
+
         case CLEAR_HISTORY:
             saveToLocalStorage('HISTORY', '[]')
             return { ...state, HISTORY: [] } 

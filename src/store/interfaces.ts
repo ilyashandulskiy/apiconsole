@@ -61,11 +61,22 @@ interface SELECTED_ITEM {
     payload: number
 }
 
+interface LAST_RESPONSE {
+    type: 'LAST_RESPONSE',
+    payload: boolean
+}
+
+interface HISTORY_COPY_ALERT {
+    type: 'HISTORY_COPY_ALERT',
+    payload: Idropdown | null
+}
+
 type Iaction = HISTORY_DROPDOWN | LOGIN
     | USERDATA | RESPONSE_TEXT
     | REQUEST_TEXT | REQUEST_STATUS
     | RESPONSE_STATUS | REQUEST_PENDING
     | HISTORY | REMOVE_HISTORY_ITEM
-    | SELECTED_ITEM | CLEAR_HISTORY;
+    | SELECTED_ITEM | CLEAR_HISTORY
+    | LAST_RESPONSE | HISTORY_COPY_ALERT;
 
 export default Iaction

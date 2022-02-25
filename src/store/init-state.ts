@@ -15,6 +15,8 @@ export interface Istate {
     REQUEST_PENDING: boolean,
     HISTORY: IhistoryItem[],
     SELECTED_ITEM: number,
+    LAST_RESPONSE: boolean,
+    HISTORY_COPY_ALERT: Idropdown | null
 }
 
 const initState : Istate = {
@@ -28,6 +30,8 @@ const initState : Istate = {
     REQUEST_PENDING: false,
     HISTORY: loadArrayFromLocalStore('HISTORY'),
     SELECTED_ITEM: 0,
+    LAST_RESPONSE: false,
+    HISTORY_COPY_ALERT: null
 }
 
 export default initState

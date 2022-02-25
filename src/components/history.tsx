@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import { IhistoryItem } from "types";
 import HistoryItem from "components/history-item";
 import { CLEAR_HISTORY } from "store/types";
+import HistoryDropDown from "components/history-dropdown";
+import CopyAlert from "components/copy-alert";
 
 function History() {
 
@@ -16,6 +18,8 @@ function History() {
 
     return ( 
         <div className="history">
+            <HistoryDropDown />
+            <CopyAlert />
             <div className="history__list">
                 {history.map((item: IhistoryItem, index) =>
                     <HistoryItem

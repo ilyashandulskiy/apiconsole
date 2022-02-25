@@ -11,6 +11,7 @@ function Requestq() {
     const requestStatus = useAppSelector(state => state.REQUEST_STATUS)
     const responseStatus = useAppSelector(state => state.RESPONSE_STATUS)
     const responseText = useAppSelector(state => state.RESPONSE_TEXT)
+    const lastResponse = useAppSelector(state => state.LAST_RESPONSE)
 
     const dispatch = useDispatch()
 
@@ -28,7 +29,7 @@ function Requestq() {
                 secondField={
                     <AreaInput
                         readonly
-                        label="Ответ:"
+                        label={lastResponse ? 'Последний ответ:' : 'Ответ:'}
                         isError={responseStatus}
                         setValue={() => null}
                         value={responseText}

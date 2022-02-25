@@ -1,9 +1,13 @@
 import { Dispatch } from "redux"
-import { HISTORY, REQUEST_PENDING, RESPONSE_STATUS, RESPONSE_TEXT } from "store/types"
+import { HISTORY, REQUEST_PENDING, RESPONSE_STATUS, RESPONSE_TEXT, LAST_RESPONSE } from "store/types"
 import formatJSON from "./format-json"
 
 const afterResponse = (success: boolean, result: string, requestText: string, dispatch: Dispatch) => {
 
+    dispatch({
+        type: LAST_RESPONSE,
+        payload: false
+    })
     dispatch({
         type: RESPONSE_TEXT,
         payload: formatJSON(JSON.stringify(result), false)
