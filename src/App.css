@@ -7,6 +7,8 @@ html, body, #root {
   align-items: stretch;
   width: 100%;
   height: 100%;
+  min-width: 400px;
+  min-height: 400px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
@@ -282,6 +284,7 @@ button {
 }
 
 .history-item {
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -347,6 +350,7 @@ button {
 
 .request {
   display: flex;
+  flex-direction: row;
   flex: 1;
   justify-self: stretch;
   justify-content: stretch;
@@ -382,22 +386,33 @@ button {
 }
 
 .area {
+  display: flex;
+  flex: 1;
   height: 100%;
   font-size: 14px;
   line-height: 18px;
   resize: none;
+  overflow-y: auto;
+  overflow-x: auto;
 }
 
 .dragger {
   height: 100%;
   display: flex;
   align-items: center;
+  padding: 10px;
+  z-index: 10;
 
+  cursor: pointer;
+}
+
+.dragger:active {
   cursor: ew-resize
 }
 
 .dragger__image {
   height: 18px;
+  width: 4px;
 }
 
 .login-error {
@@ -431,10 +446,24 @@ button {
   opacity: 0.5;
 }
 
+.history-item-wrapper {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+}
+
 .history-dropdown {
   display: flex;
   flex-direction: column;
   position: absolute;
+  padding-top: 30px;
+  z-index: 20;
+}
+
+.history-dropdown-inner {
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
   background: #FFFFFF;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
   border-radius: 3px;
@@ -466,7 +495,14 @@ button {
 .history-dropdown__line {
   background-color: rgba(0, 0, 0, 0.2);
   width: 100%;
-  height: 1px
+  height: 1px;
+  margin: 5px 0px;
+}
+
+.history-item__menu-button {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
 }
 
 .spinner_button {
@@ -478,4 +514,73 @@ button {
 @keyframes spin {
   from {transform:rotate(0deg);}
   to {transform:rotate(360deg);}
+}
+
+.resizeable-right {
+  display: flex;
+  flex: 1;
+  background-color: 'red';
+  margin-left: -10px;
+}
+
+.resizeable-left {
+  display: flex;
+  flex: 1;
+  margin-right: -10px;
+}
+
+.resizeable {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
+.react-resizable {
+  display: flex;
+  flex-direction: row;
+}
+
+.copy-alert {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: 90px;
+  height: 20px;
+  top: 5px;
+  background: #F6F6F6;
+  border-radius: 5px;
+  opacity: 0;
+  z-index: 50;
+
+  pointer-events: none;
+}
+
+.copy-alert_animation {
+  animation: copy-alert-inited 1s forwards normal linear;
+}
+
+.copy-alert__text {
+  font-size: 12px;
+  color: #0D0D0D;
+  margin:0px;
+}
+
+.copy-alert-wrapper {
+  top: 0px;
+  position: absolute;
+  display: flex;
+  width: 200px;
+  height: 30px;
+  overflow: hidden;
+}
+
+@keyframes copy-alert-inited {
+  0% {
+      top:0px;
+      opacity: 1;
+  }
+  100% {
+      top: -20px;
+      opacity: 0;
+  }
 }

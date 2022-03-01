@@ -1,9 +1,11 @@
 
+export const loadArrayFromLocalStore = (key: string) => {
+    if (!localStorage.getItem(key)) return []
+    return JSON.parse(localStorage.getItem(key) || '[]')
+}
 
 export const loadFromLocalStore = (key: string) => {
-    
     if (!localStorage.getItem(key)) return null
-    
     return localStorage.getItem(key)
 
 }

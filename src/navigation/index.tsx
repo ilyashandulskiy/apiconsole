@@ -6,8 +6,6 @@ import MainApp from "screens/main-app";
 import Error404 from "screens/errors/404";
 import useAppSelector from "hooks/useAppSelector";
 
-
-
 function Navigation() {
 
     const isLoggedIn = useAppSelector(state => state.LOGIN);

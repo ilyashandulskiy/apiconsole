@@ -12,7 +12,6 @@ interface Iprops {
     isLoading: boolean
 }
 
-
 function Form({ data, callback, isLoading }: Iprops) {
 
     const [formdata, setFormdata] = useState<Iinput[]>(Array(data.length).fill({}))
@@ -36,6 +35,10 @@ function Form({ data, callback, isLoading }: Iprops) {
             });
             callback(result)
         }
+    }
+
+    const onKeyDown = (event: React.KeyboardEvent) => {
+        if(event.key === 'Enter') onSubmit()
     }
 
     const content = data.map((item, index) => {
@@ -64,7 +67,7 @@ function Form({ data, callback, isLoading }: Iprops) {
     })
 
     return ( 
-        <div className="form">
+        <div className="form" role="button" tabIndex={0} onKeyDown={onKeyDown}>
             {content}
         </div>
      );

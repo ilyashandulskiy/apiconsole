@@ -2,6 +2,21 @@
 import Sendsay from 'sendsay-api';
 import { LOGIN } from '../store/types'
 
+export const sendsayRequest = (token, data) => {
+
+  const sendsay = new Sendsay();
+  sendsay.setSession(token)
+
+  return new Promise((resolve, reject) => {
+    sendsay.request(data)
+      .then(res => {
+        resolve(res)
+    })
+    .catch(reject)
+  })
+  
+}
+
 export const sendsayUserData = (token, dispatch) => {
 
   const sendsay = new Sendsay();

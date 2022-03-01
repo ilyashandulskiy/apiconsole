@@ -5,7 +5,6 @@ import { USERDATA } from "store/types";
 import Footer from "components/footer";
 import Header from "components/header";
 import History from "components/history";
-import HistoryDropDown from "components/history-dropdown";
 import Request from "components/request"
 import useAppSelector from "hooks/useAppSelector";
 
@@ -26,8 +25,6 @@ function MainApp() {
             <History />
             <Request />
             <Footer />
-
-            <HistoryDropDown />
         </div>
      );
 }
