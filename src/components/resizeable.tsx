@@ -4,6 +4,7 @@ import { ResizableBox } from 'react-resizable';
 import ResizeHandler from "components/resize-handler";
 import { initDimensions } from 'libs/dimensions'
 import { Idimension } from 'types'
+import { observer } from "mobx-react-lite";
 
 
 interface Iprops {
@@ -68,4 +69,4 @@ function Resizeable({ firstField, secondField }: Iprops) {
      );
 }
 
-export default Resizeable;
+export default observer(Resizeable);

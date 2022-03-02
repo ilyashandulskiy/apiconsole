@@ -1,6 +1,5 @@
 /* eslint-disable import/prefer-default-export */
 import Sendsay from 'sendsay-api';
-import { LOGIN } from '../store/types'
 
 export const sendsayRequest = (token, data) => {
 
@@ -17,7 +16,7 @@ export const sendsayRequest = (token, data) => {
   
 }
 
-export const sendsayUserData = (token, dispatch) => {
+export const sendsayUserData = (token, store) => {
 
   const sendsay = new Sendsay();
   sendsay.setSession(token)
@@ -27,7 +26,7 @@ export const sendsayUserData = (token, dispatch) => {
       .then(res => {
         resolve(res)
     })
-    .catch(() => dispatch({type: LOGIN, payload: null}))
+    .catch(() => store.setAuth(null))
   })
   
 }

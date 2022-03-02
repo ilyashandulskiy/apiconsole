@@ -1,19 +1,12 @@
 import React from "react";
 import AreaInput from 'components/ui/area-input'
-import useAppSelector from "hooks/useAppSelector";
-import { REQUEST_TEXT } from "store/types";
-import { useDispatch } from "react-redux";
 import Resizeable from "components/resizeable";
+import { useStore } from "store/store";
+import { observer } from "mobx-react-lite";
 
 function Requestq() {
 
-    const requestText = useAppSelector(state => state.REQUEST_TEXT)
-    const requestStatus = useAppSelector(state => state.REQUEST_STATUS)
-    const responseStatus = useAppSelector(state => state.RESPONSE_STATUS)
-    const responseText = useAppSelector(state => state.RESPONSE_TEXT)
-    const lastResponse = useAppSelector(state => state.LAST_RESPONSE)
-
-    const dispatch = useDispatch()
+    const { requestText, requestStatus, responseStatus, responseText, lastResponse, setRequestText } = useStore()
 
     return ( 
         <div className="request">
@@ -23,7 +16,7 @@ function Requestq() {
                         value={requestText}
                         label="Запрос:"
                         isError={requestStatus}
-                        setValue={(val: string) => dispatch({type: REQUEST_TEXT, payload: val})}
+                        setValue={(val: string) => setRequestText(val)}
                     />
                 }
                 secondField={
@@ -41,4 +34,4 @@ function Requestq() {
      );
 }
 
-export default Requestq;
+export default observer(Requestq);

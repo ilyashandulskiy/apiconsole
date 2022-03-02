@@ -1,20 +1,18 @@
 import React from "react";
 import formatJSON from "libs/format-json";
-import useAppSelector from "hooks/useAppSelector";
-import { useDispatch } from "react-redux";
-import { REQUEST_STATUS, REQUEST_TEXT } from "store/types";
+import { useStore } from "store/store";
+import { observer } from "mobx-react-lite";
 
 function FormatButton() {
-    const dispatch = useDispatch()
-    const requestText = useAppSelector(state => state.REQUEST_TEXT)
+    const { requestText, setRequestStatus, setRequestText } = useStore()
 
     const onFormat = () => {
         const formated = formatJSON(requestText, false)
 
         if (formated === null) {
-            dispatch({type: REQUEST_STATUS, payload: true})
+            setRequestStatus(true)
         } else {
-            dispatch({type: REQUEST_TEXT, payload: formated})
+            setRequestText(formated)
         }
     }
     
@@ -26,4 +24,4 @@ function FormatButton() {
      );
 }
 
-export default FormatButton;
+export default observer(FormatButton);

@@ -1,9 +1,10 @@
+import { observer } from "mobx-react-lite";
 import React from "react";
-import useAppSelector from 'hooks/useAppSelector'
+import { useStore } from "store/store";
 
 function Profile() {
     
-    const userdata = useAppSelector(state => state.USERDATA)
+    const { userdata } = useStore()
 
     if (userdata?.sublogin && userdata?.account) {
         if (userdata.account === userdata.sublogin) return (
@@ -22,4 +23,4 @@ function Profile() {
      );
 }
 
-export default Profile;
+export default observer(Profile);

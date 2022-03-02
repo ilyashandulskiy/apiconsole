@@ -1,12 +1,12 @@
+import { observer } from "mobx-react-lite";
 import React from "react";
-import { useDispatch } from 'react-redux'
-import { LOGIN } from "store/types";
+import { useStore } from "store/store";
 
 function LogoutButton() {
-    const dispatch = useDispatch()
-
+    const { setAuth } = useStore()
+    
     const onLogout = () => {
-        dispatch({ type: LOGIN, payload: null })
+        setAuth(null)
     }
 
     return ( 
@@ -17,4 +17,4 @@ function LogoutButton() {
      );
 }
 
-export default LogoutButton;
+export default observer(LogoutButton);

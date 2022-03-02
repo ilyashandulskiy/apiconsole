@@ -4,13 +4,14 @@ import { Route, Routes } from "react-router-dom";
 import Login from "screens/login";
 import MainApp from "screens/main-app";
 import Error404 from "screens/errors/404";
-import useAppSelector from "hooks/useAppSelector";
+import { useStore } from "store/store";
+import { observer } from "mobx-react-lite";
 
 function Navigation() {
 
-    const isLoggedIn = useAppSelector(state => state.LOGIN);
+    const { auth } = useStore()
 
-    if (!isLoggedIn) return ( 
+    if (!auth) return ( 
         <Routes>
             <Route path="*" element={<Login />} />
         </Routes>
@@ -24,4 +25,4 @@ function Navigation() {
      );
 }
 
-export default Navigation
+export default observer(Navigation)

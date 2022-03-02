@@ -1,19 +1,17 @@
 import React from "react";
-import useAppSelector from "hooks/useAppSelector";
-import { useDispatch } from "react-redux";
 import { IhistoryItem } from "types";
 import HistoryItem from "components/history-item";
-import { CLEAR_HISTORY } from "store/types";
 import HistoryDropDown from "components/history-dropdown";
 import CopyAlert from "components/copy-alert";
+import { useStore } from "store/store";
+import { observer } from "mobx-react-lite";
 
 function History() {
 
-    const history = useAppSelector(state => state.HISTORY)
-    const dispatch = useDispatch()
+    const { history, clearHistory } = useStore()
 
     const onClear = () => {
-        dispatch({type: CLEAR_HISTORY})
+        clearHistory()
     }
 
     return ( 
@@ -38,4 +36,4 @@ function History() {
      );
 }
 
-export default History;
+export default observer(History);

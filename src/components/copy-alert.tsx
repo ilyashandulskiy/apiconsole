@@ -1,8 +1,9 @@
+import { observer } from "mobx-react-lite";
 import React, { useEffect, useState } from "react";
-import useAppSelector from "hooks/useAppSelector";
+import { useStore } from "store/store";
 
 function CopyAlert() {
-    const historyCopyAlert = useAppSelector(state => state.HISTORY_COPY_ALERT)
+    const { historyCopyAlert } = useStore()
     const [copyClass, setCopyClass] = useState<string>('copy-alert')
 
     useEffect(() => {
@@ -25,4 +26,4 @@ function CopyAlert() {
      );
 }
 
-export default CopyAlert;
+export default observer(CopyAlert);

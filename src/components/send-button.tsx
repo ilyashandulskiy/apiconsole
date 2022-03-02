@@ -1,25 +1,21 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import useAppSelector from "hooks/useAppSelector";
 import Button from "components/ui/button";
 import sendRequest from "libs/send-request";
+import { useStore } from "store/store";
+import { observer } from "mobx-react-lite";
 
 function SendButton() {
 
-    const token = useAppSelector(state => state.LOGIN)
-    const requestText = useAppSelector(state => state.REQUEST_TEXT)
-    const requestPending = useAppSelector(state => state.REQUEST_PENDING)
+    const store = useStore()
 
-    const dispatch = useDispatch()
-
-    const onSend = () => sendRequest(requestText, token, dispatch)
+    const onSend = () => sendRequest(store)
 
     return ( 
         <Button
             onClick={onSend}
-            loading={requestPending}
+            loading={store.requestPending}
             text="Отправить"
          />
      );
 }
-export default SendButton;
+export default observer(SendButton);

@@ -1,3 +1,4 @@
+import { observer } from "mobx-react-lite";
 import React from "react";
 
 interface Iprops {
@@ -35,4 +36,4 @@ function AreaInput({ label, placeholder, readonly, setValue, value, isError}: Ip
      );
 }
 
-export default AreaInput;
+export default observer(AreaInput);

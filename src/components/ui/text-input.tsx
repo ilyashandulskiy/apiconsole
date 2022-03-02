@@ -1,3 +1,4 @@
+import { observer } from "mobx-react-lite";
 import React from "react";
 
 interface Iprops {
@@ -39,4 +40,4 @@ function TextInput({ setValue, label, placeholder, type = 'text', required, isEr
      );
 }
 
-export default TextInput;
+export default observer(TextInput);
