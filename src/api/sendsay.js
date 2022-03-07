@@ -1,9 +1,10 @@
 /* eslint-disable import/prefer-default-export */
 import Sendsay from 'sendsay-api';
 
+let sendsay = new Sendsay();
+
 export const sendsayRequest = (token, data) => {
 
-  const sendsay = new Sendsay();
   sendsay.setSession(token)
 
   return new Promise((resolve, reject) => {
@@ -18,7 +19,6 @@ export const sendsayRequest = (token, data) => {
 
 export const sendsayUserData = (token, store) => {
 
-  const sendsay = new Sendsay();
   sendsay.setSession(token)
 
   return new Promise((resolve) => {
@@ -33,7 +33,7 @@ export const sendsayUserData = (token, store) => {
 
 export const sendsayLogin = ({ login, sublogin, password }) => {
   
-  const sendsay = new Sendsay({
+  sendsay = new Sendsay({
     auth: {
       login,
       sublogin,
