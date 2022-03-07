@@ -1,3 +1,4 @@
+import { observer } from "mobx-react-lite";
 import React from "react";
 
 interface Iprops {
@@ -16,4 +17,4 @@ function LoginError({error} : Iprops) {
      );
 }
 
-export default LoginError;
+export default observer(LoginError);

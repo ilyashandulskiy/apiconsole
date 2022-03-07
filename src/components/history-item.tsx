@@ -1,9 +1,8 @@
 import React, { useRef } from "react";
-import { useDispatch } from 'react-redux';
 import { Idropdown } from 'types';
-import { HISTORY_DROPDOWN, LAST_RESPONSE, REQUEST_TEXT, RESPONSE_STATUS, RESPONSE_TEXT, SELECTED_ITEM } from 'store/types'
-import useAppSelector from "hooks/useAppSelector";
 import formatJSON from "libs/format-json";
+import { useStore } from "store/store";
+import { observer } from "mobx-react-lite";
 
 interface Iprops {
     isError: boolean,
@@ -13,11 +12,12 @@ interface Iprops {
 
 function HistoryItem({ title, isError, index }: Iprops) {
 
-    const dispatch = useDispatch();
     const ref = useRef<HTMLDivElement>(null);
-    const items = useAppSelector(state => state.HISTORY)
+    const { history } = useStore()
 
-    const {request, response, status} = items[index]
+    const { setSelectedItem, setHistoryDropDown, setLastResponse, setRequestText, setResponseText, setResponseStatus } = useStore()
+
+    const {request, response, status} = history[index]
     
     
     const statusClass = !isError ?
@@ -26,33 +26,15 @@ function HistoryItem({ title, isError, index }: Iprops) {
         'history-item__status history-item__status_error';
 
     const onDropdown = (cords: Idropdown) => {
-        dispatch({
-            type: SELECTED_ITEM,
-            payload: index
-        })
-        dispatch({
-            type: HISTORY_DROPDOWN,
-            payload: cords
-        })
+        setSelectedItem(index)
+        setHistoryDropDown(cords)
     }
 
     const onPreview = () => {
-        dispatch({
-            type: LAST_RESPONSE,
-            payload: true
-        })
-        dispatch({
-            type: REQUEST_TEXT,
-            payload: formatJSON(request, false)
-        })
-        dispatch({
-            type: RESPONSE_TEXT,
-            payload: formatJSON(JSON.stringify(response), false)
-        })
-        dispatch({
-            type: RESPONSE_STATUS,
-            payload: !status
-        })
+        setLastResponse(true)
+        setRequestText(formatJSON(request, false) || '')
+        setResponseText(formatJSON(JSON.stringify(response), false) || '')
+        setResponseStatus(!status)
     }
 
     const dropdownHandler = () => {
@@ -88,4 +70,4 @@ function HistoryItem({ title, isError, index }: Iprops) {
      );
 }
 
-export default HistoryItem;
+export default observer(HistoryItem);

@@ -5,6 +5,7 @@ import validate from 'libs/validate'
 import formInit from "libs/form-init";
 import { Iitem, Iresult, Iinput, IinputType } from 'types'
 import validateText from "libs/validate-text";
+import { observer } from "mobx-react-lite";
 
 interface Iprops {
     data: Iitem[],
@@ -73,4 +74,4 @@ function Form({ data, callback, isLoading }: Iprops) {
      );
 }
 
-export default Form;
+export default observer(Form);

@@ -1,3 +1,4 @@
+import { observer } from "mobx-react-lite";
 import React from "react";
 
 interface Iprops {
@@ -21,4 +22,4 @@ function Button({ loading, onClick, text }: Iprops) {
      );
 }
 
-export default Button;
+export default observer(Button);

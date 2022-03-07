@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { useDispatch } from 'react-redux';
 import Block from "components/block";
 import LoginError from "components/login-error";
 import Form from "components/ui/form";
 import { sendsayLogin } from "api/sendsay";
-import { LOGIN } from "store/types";
 import { LOGIN_FORM } from 'libs/constants'
+import { useStore } from "store/store";
+import { observer } from "mobx-react-lite";
 
 interface IsubmitData {
     login: string,
@@ -16,14 +16,14 @@ interface IsubmitData {
 function Login() {
     const [loginError, setLoginError] = useState<null | string>(null)
     const [loading, setLoading] = useState<boolean>(false);
-    const dispatch = useDispatch()
+    const { setAuth } = useStore()
 
     const loginErrorPopup = loginError ? <LoginError error={loginError} /> : null;
 
     const onSubmit = (data : IsubmitData) => {
         setLoading(true)
         sendsayLogin(data)
-            .then((token: string) => dispatch({ type: LOGIN, payload: token }))
+            .then((token: string) => setAuth(token))
             .catch((error: string) => {
                 setLoading(false)
                 setLoginError(error)
@@ -46,4 +46,4 @@ function Login() {
      );
 }
 
-export default Login;
+export default observer(Login);

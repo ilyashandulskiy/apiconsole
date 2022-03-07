@@ -1,6 +1,7 @@
 import React from "react";
 import FormatButton from "components/format-button";
 import SendButton from "components/send-button";
+import { observer } from "mobx-react-lite";
 
 function Footer() {
 
@@ -13,4 +14,4 @@ function Footer() {
      );
 }
 
-export default Footer;
+export default observer(Footer);

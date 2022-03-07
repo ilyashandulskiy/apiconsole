@@ -1,21 +1,20 @@
 import React, { useEffect } from "react";
-import { useDispatch } from 'react-redux'
 import { sendsayUserData } from "api/sendsay";
-import { USERDATA } from "store/types";
 import Footer from "components/footer";
 import Header from "components/header";
 import History from "components/history";
 import Request from "components/request"
-import useAppSelector from "hooks/useAppSelector";
+import { useStore } from "store/store";
+import { observer } from "mobx-react-lite";
 
 
 function MainApp() {
-    const dispatch = useDispatch()
-    const token = useAppSelector(state => state.LOGIN)
+    const { auth, setUserdata } = useStore()
+    const store = useStore()
 
     useEffect(() => {
-        sendsayUserData(token, dispatch)
-            .then((userdata) => dispatch({type: USERDATA, payload: userdata}))
+        sendsayUserData(auth, store)
+            .then((userdata) => setUserdata(userdata))
     }, [])
     
 
@@ -29,5 +28,5 @@ function MainApp() {
      );
 }
 
-export default MainApp;
+export default observer(MainApp);
 

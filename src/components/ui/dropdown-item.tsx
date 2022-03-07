@@ -1,3 +1,4 @@
+import { observer } from "mobx-react-lite";
 import React from "react";
 
 interface Iprops {
@@ -20,4 +21,4 @@ function DropdownItem({ title, dangerous, onSelect }: Iprops) {
      );
 }
 
-export default DropdownItem;
+export default observer(DropdownItem);

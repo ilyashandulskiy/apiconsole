@@ -1,5 +1,6 @@
 /* eslint-disable no-restricted-globals */
 import { initFullscreen } from "libs/dimensions";
+import { observer } from "mobx-react-lite";
 import React, { useEffect, useState } from "react";
 
 function FullscreenButton() {
@@ -28,4 +29,4 @@ function FullscreenButton() {
      );
 }
 
-export default FullscreenButton;
+export default observer(FullscreenButton);

@@ -1,19 +1,18 @@
 import { sendsayRequest } from "api/sendsay"
-import { Dispatch } from "redux"
-import { REQUEST_PENDING, REQUEST_STATUS } from "store/types"
+import { Istore } from "store/store"
 import afterResponse from "./after-response"
 import formatJSON from "./format-json"
 
 
-const sendRequest = (requestText: string, token: string | null, dispatch: Dispatch) => {
+const sendRequest = (store: Istore) => {
 
-    if (formatJSON(requestText, true) !== null) {
-        dispatch({type: REQUEST_PENDING, payload: true})
-        sendsayRequest(token, JSON.parse(requestText))
-            .then((result: string) => afterResponse(true, result, requestText, dispatch))
-            .catch((error: string) => afterResponse(false, error, requestText, dispatch))
+    if (formatJSON(store.requestText, true) !== null) {
+        store.setRequestPending(true)
+        sendsayRequest(store.auth, JSON.parse(store.requestText))
+            .then((result: string) => afterResponse(true, result, store.requestText, store))
+            .catch((error: string) => afterResponse(false, error, store.requestText, store))
     } else {
-        dispatch({ type: REQUEST_STATUS, payload: true })
+        store.setRequestStatus(true)
     }
 }
 

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Navigation from 'navigation';
 import './App.css';
 import preloadImages from 'libs/preload-images';
+import { observer } from 'mobx-react-lite';
 
 function App() {
 
@@ -16,4 +17,4 @@ function App() {
   );
 }
 
-export default App;
+export default observer(App);
